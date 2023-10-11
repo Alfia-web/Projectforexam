@@ -5,8 +5,8 @@ from tkinter import ttk
 import sqlite3
 
 class Main(tk.Frame):
-    def __init__(self, root):
-        super().__init__(root)
+    def__init__(self, root):
+        super()._init__(root)
         self.init_main()
         self.db = db
         self.view_records()
