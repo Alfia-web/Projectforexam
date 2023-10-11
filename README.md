@@ -1,11 +1,11 @@
 #Projectforexam
 #импорт необходимых модулей
-import tkinter as tk
-from tkinter import ttk
-import sqlite3
-
+    import tkinter as tk
+    from tkinter import ttk
+    import sqlite3
+  
 class Main(tk.Frame):
-    def__init__(self, root):
+    def __init__(self, root):
         super().__init__(root)
         self.init_main()
         self.db = db
