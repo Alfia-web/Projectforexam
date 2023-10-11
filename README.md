@@ -1,8 +1,8 @@
 # Projectforexam
 #импорт необходимых модулей
-    import tkinter as tk
-    from tkinter import ttk
-    import sqlite3
+import tkinter as tk
+from tkinter import ttk
+import sqlite3
 
 class Main(tk.Frame):
     def __init__(self, root):
