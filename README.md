@@ -1,8 +1,8 @@
 # Projectforexam
 #импорт необходимых модулей
- import tkinter as tk
- from tkinter import ttk
- import sqlite3
+import tkinter as tk
+from tkinter import ttk
+import sqlite3
 
 class Main(tk.Frame):
     def __init__(self, root):
@@ -10,8 +10,8 @@ class Main(tk.Frame):
         self.init_main()
         self.db = db
         self.view_records()
-        
-  #поиск данных 
+
+    #поиск данных
     def search_records(self, name):
         name = ('%' + name + '%')
         self.db.c.execute("""SELECT * FROM data WHERE name LIKE ?""", (name,))
@@ -20,8 +20,8 @@ class Main(tk.Frame):
 
     def open_search_dialog(self):
         Search()
-        
-#удаление данных
+
+    #удаление данных
     def delete_records(self):
         for selection_item in self.tree.selection():
             self.db.c.execute("""DELETE FROM data
@@ -29,7 +29,7 @@ class Main(tk.Frame):
             self.db.conn.commit()
             self.view_records()
 
-#обновление данных
+    #обновление данных
     def update_record(self, name, tel, email, salary):
         self.db.c.execute("""UPDATE data SET name=?, tel=?, email=?, salary=?
         WHERE ID=?""", (name, tel, email, salary,
@@ -100,8 +100,7 @@ class Main(tk.Frame):
                                image=self.search_img,
                                command=self.open_search_dialog)
         btn_search.pack(side=tk.LEFT)
-        
-         #кнопка обновления
+        # кнопка обновления
         self.refresh_img = tk.PhotoImage(file='./img/refresh.png')
         btn_refresh = tk.Button(toolbar, bg='#d7d8e0', bd=0,
                                 image=self.refresh_img,
@@ -110,7 +109,8 @@ class Main(tk.Frame):
     def records(self, name, tel, email, salary):
         self.db.insert_data(name, tel, email, salary)
         self.view_records()
-    #вывод данных в виджет таблицы
+
+    # вывод данных в виджет таблицы
     def view_records(self):
         # выбираем информацию из БД
         self.db.c.execute('''SELECT * FROM data''')
@@ -119,7 +119,6 @@ class Main(tk.Frame):
         # добавляем в виджет таблицы всю информацию из БД
         [self.tree.insert('', 'end', values=row)
          for row in self.db.c.fetchall()]
-         
     def open_dialog(self):
         Child()
 
@@ -129,13 +128,13 @@ class Child(tk.Toplevel):
         self.init_child()
         self.view = app
 
-    #создание дочерного окна с добавлением данных в БД
+
     def init_child(self):
         self.title('Добавить')
         self.geometry('400x220')
         self.resizable(False, False)
-        
-        #расположение кнопок добавления данных
+
+        # расположение кнопок добавления данных
         label_name = tk.Label(self, text='ФИО:')
         label_name.place(x=50, y=50)
         label_select = tk.Label(self, text='Телефон')
@@ -157,12 +156,10 @@ class Child(tk.Toplevel):
         # добавляем строку ввода для телефона
         self.entry_tel = ttk.Entry(self)
         self.entry_tel.place(x=200, y=110)
-        
-        # добавляем строку ввода для зарплаты
+
         self.entry_salary = ttk.Entry(self)
         self.entry_salary.place(x=200, y=140)
-        
-        #кнопка закрытия дочернего окна
+
         self.btn_cancel = ttk.Button(self, text='Закрыть', command=self.destroy)
         self.btn_cancel.place(x=300, y=170)
 
@@ -247,6 +244,8 @@ class DB():
         self.c.execute("""INSERT INTO data (name, tel, email, salary)
         VALUES (?, ?, ?, ?)""", (name, tel, email, salary))
         self.conn.commit()
+
+
 
 if __name__ == '__main__':
     root = tk.Tk()
