@@ -10,7 +10,8 @@ class Main(tk.Frame):
         self.init_main()
         self.db = db
         self.view_records()
-    #поиск данных 
+        
+  #поиск данных 
     def search_records(self, name):
         name = ('%' + name + '%')
         self.db.c.execute("""SELECT * FROM data WHERE name LIKE ?""", (name,))
