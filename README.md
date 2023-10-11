@@ -1,5 +1,5 @@
 # Projectforexam
-# импорт необходимых модулей
+#импорт необходимых модулей
 import tkinter as tk
 from tkinter import ttk
 import sqlite3
